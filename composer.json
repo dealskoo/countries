@@ -1,0 +1,34 @@
+{
+    "name": "dealskoo/countries",
+    "description": "Dealskoo Countries list",
+    "homepage": "https://www.dealskoo.com",
+    "support": {
+        "issues": "https://github.com/dealskoo/countries/issues",
+        "source": "https://github.com/dealskoo/countries"
+    },
+    "keywords": [
+        "Laravel",
+        "Dealskoo Countries list",
+        "Dealskoo"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Dealskoo\\Countries\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Dealskoo\\Countries\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "hadi",
+            "email": "hadi@dealskoo.com",
+            "homepage": "https://www.dealskoo.com"
+        }
+    ],
+    "require": {}
+}
