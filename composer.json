@@ -1,26 +1,26 @@
 {
-    "name": "dealskoo/countries",
-    "description": "Dealskoo Countries list",
+    "name": "dealskoo/country",
+    "description": "Dealskoo country list",
     "homepage": "https://www.dealskoo.com",
     "support": {
-        "issues": "https://github.com/dealskoo/countries/issues",
-        "source": "https://github.com/dealskoo/countries"
+        "issues": "https://github.com/dealskoo/country/issues",
+        "source": "https://github.com/dealskoo/country"
     },
     "keywords": [
         "Laravel",
-        "Dealskoo Countries list",
+        "Dealskoo country list",
         "Dealskoo"
     ],
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Dealskoo\\Countries\\": "src/"
+            "Dealskoo\\Country\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Dealskoo\\Countries\\Tests\\": "tests/"
+            "Dealskoo\\Country\\Tests\\": "tests/"
         }
     },
     "authors": [
@@ -30,5 +30,30 @@
             "homepage": "https://www.dealskoo.com"
         }
     ],
-    "require": {}
+    "scripts": {
+        "post-autoload-dump": [
+            "@php ./vendor/bin/testbench package:discover --ansi"
+        ]
+    },
+    "require": {
+        "php": ">=7.0.0",
+        "laravel/framework": ">=7.20"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.23",
+        "orchestra/canvas": "^6.10",
+        "phpunit/phpunit": "^9.5"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dealskoo\\Country\\Providers\\CountryServiceProvider"
+            ],
+            "aliases": {
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
 }
