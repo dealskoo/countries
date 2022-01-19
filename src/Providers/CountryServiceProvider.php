@@ -45,5 +45,10 @@ class CountryServiceProvider extends ServiceProvider
             $menu->route('admin.countries.index', 'country::country.countries', [], ['permission' => 'countries.index']);
         });
 
+        PermissionManager::add(new Permission('countries.index', 'Countries List'), 'admin.settings');
+        PermissionManager::add(new Permission('countries.show', 'View Country'), 'countries.index');
+        PermissionManager::add(new Permission('countries.create', 'Create Country'), 'countries.index');
+        PermissionManager::add(new Permission('countries.edit', 'Edit Country'), 'countries.index');
+        PermissionManager::add(new Permission('countries.destroy', 'Destroy Country'), 'countries.index');
     }
 }

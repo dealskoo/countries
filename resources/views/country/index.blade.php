@@ -1,6 +1,6 @@
 @extends('admin::layouts.panel')
 
-@section('title',__('seller::seller.sellers_list'))
+@section('title',__('country::country.countries_list'))
 @section('body')
     <div class="row">
         <div class="col-12">
@@ -8,11 +8,11 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a
-                                href="{{ route('seller.dashboard') }}">{{ __('admin::admin.dashboard') }}</a></li>
-                        <li class="breadcrumb-item active">{{ __('seller::seller.sellers_list') }}</li>
+                                href="{{ route('admin.dashboard') }}">{{ __('admin::admin.dashboard') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('country::country.countries_list') }}</li>
                     </ol>
                 </div>
-                <h4 class="page-title">{{ __('seller::seller.sellers_list') }}</h4>
+                <h4 class="page-title">{{ __('country::country.countries_list') }}</h4>
             </div>
         </div>
     </div>
@@ -20,18 +20,31 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                    @if(Auth::user()->canDo('countries.create'))
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <a href="{{ route('admin.countries.create') }}" class="btn btn-danger mb-2"><i
+                                        class="mdi mdi-plus-circle me-2"></i> {{ __('country::country.add_country') }}
+                                </a>
+                            </div>
+                        </div>
+                    @endif
                     <div class="table-responsive">
-                        <table id="sellers_table" class="table table-centered w-100 dt-responsive nowrap">
+                        <table id="countries_table" class="table table-centered w-100 dt-responsive nowrap">
                             <thead class="table-light">
                             <tr>
-                                <th>{{ __('seller::seller.id') }}</th>
-                                <th>{{ __('seller::seller.name') }}</th>
-                                <th>{{ __('seller::seller.slug') }}</th>
-                                <th>{{ __('seller::seller.email') }}</th>
-                                <th>{{ __('seller::seller.country') }}</th>
-                                <th>{{ __('seller::seller.created_at') }}</th>
-                                <th>{{ __('seller::seller.updated_at') }}</th>
-                                <th>{{ __('seller::seller.action') }}</th>
+                                <th>{{ __('country::country.id') }}</th>
+                                <th>{{ __('country::country.name') }}</th>
+                                <th>{{ __('country::country.locale') }}</th>
+                                <th>{{ __('country::country.alpha2') }}</th>
+                                <th>{{ __('country::country.currency') }}</th>
+                                <th>{{ __('country::country.currency_code') }}</th>
+                                <th>{{ __('country::country.currency_symbol') }}</th>
+                                <th>{{ __('country::country.currency_decimals') }}</th>
+                                <th>{{ __('country::country.currency_rate') }}</th>
+                                <th>{{ __('country::country.calling_code') }}</th>
+                                <th>{{ __('country::country.region_code') }}</th>
+                                <th>{{ __('country::country.action') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -46,7 +59,7 @@
 @section('script')
     <script type="text/javascript">
         $(function () {
-            $('#sellers_table').dataTable({
+            $('#countries_table').dataTable({
                 "processing": true,
                 "serverSide": true,
                 "ajax": "{{ route('admin.countries.index') }}",
@@ -60,13 +73,17 @@
                     {'orderable': true},
                     {'orderable': true},
                     {'orderable': true},
+                    {'orderable': true},
+                    {'orderable': true},
+                    {'orderable': true},
+                    {'orderable': true},
                     {'orderable': false},
                 ],
                 "order": [[0, "desc"]],
                 "drawCallback": function () {
                     $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
-                    $('#sellers_table tr td:nth-child(2)').addClass('table-user');
-                    $('#sellers_table tr td:nth-child(5)').addClass('table-action');
+                    $('#countries_table tr td:nth-child(2)').addClass('table-user');
+                    $('#countries_table tr td:nth-child(13)').addClass('table-action');
                     $('.delete-btn').on('click', function (e) {
                         let table = $('#' + $(this).data('table'));
                         let url = $(this).data('url');

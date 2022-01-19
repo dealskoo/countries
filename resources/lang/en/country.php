@@ -1,4 +1,25 @@
 <?php
 return [
-    'countries' => 'Countries'
+    'countries' => 'Countries',
+    'countries_list' => 'Countries List',
+    'add_country' => 'Add Country',
+    'id' => 'Id',
+    'name' => 'Name',
+    'code' => 'Code',
+    'alpha2' => 'Alpha2',
+    'alpha3' => 'Alpha3',
+    'currency' => 'Currency',
+    'currency_code' => 'Currency Code',
+    'currency_sub_unit' => 'Currency Sub Unit',
+    'currency_symbol' => 'Currency Symbol',
+    'currency_decimals' => 'Currency Decimals',
+    'currency_rate' => 'Currency Rate',
+    'calling_code' => 'Calling Code',
+    'region_code' => 'Region Code',
+    'sub_region_code' => 'Sub Region Code',
+    'locale' => 'Locale',
+    'eea' => 'EEA',
+    'created_at' => 'Created At',
+    'updated_at' => 'Updated At',
+    'action' => 'Action'
 ];
