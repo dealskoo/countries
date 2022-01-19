@@ -1,4 +1,4 @@
 <?php
 return [
-
+    'countries' => 'Countries'
 ];

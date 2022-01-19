@@ -2,6 +2,9 @@
 
 namespace Dealskoo\Country\Providers;
 
+use Dealskoo\Admin\Facades\AdminMenu;
+use Dealskoo\Admin\Facades\PermissionManager;
+use Dealskoo\Admin\Permission;
 use Illuminate\Support\ServiceProvider;
 
 class CountryServiceProvider extends ServiceProvider
@@ -37,5 +40,10 @@ class CountryServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../resources/lang' => resource_path('lang/vendor/country')
         ], 'lang');
+
+        AdminMenu::whereTitle('admin::admin.settings', function ($menu) {
+            $menu->route('admin.countries.index', 'country::country.countries', [], ['permission' => 'countries.index']);
+        });
+
     }
 }

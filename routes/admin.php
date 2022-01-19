@@ -1,6 +1,6 @@
 <?php
 
-use Dealskoo\Seller\Http\Controllers\Admin\SellerController;
+use Dealskoo\Country\Http\Controllers\Admin\CountryController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web', 'admin_locale'])->prefix(config('admin.route.prefix'))->name('admin.')->group(function () {
@@ -10,6 +10,7 @@ Route::middleware(['web', 'admin_locale'])->prefix(config('admin.route.prefix'))
     });
 
     Route::middleware(['auth:admin', 'admin_active'])->group(function () {
+        Route::resource('countries', CountryController::class);
 
     });
 
