@@ -33,7 +33,7 @@ class CountryServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/../../public' => public_path('vendor/country')
-        ]);
+        ], 'public');
         $this->publishes([
             __DIR__ . '/../../resources/lang' => resource_path('lang/vendor/country')
         ], 'lang');
