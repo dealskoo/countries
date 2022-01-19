@@ -39,7 +39,8 @@
     },
     "require": {
         "php": ">=7.0.0",
-        "laravel/framework": ">=7.20"
+        "laravel/framework": ">=7.20",
+        "webpatser/laravel-countries": "^1.5"
     },
     "require-dev": {
         "orchestra/testbench": "^6.23",
