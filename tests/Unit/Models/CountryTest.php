@@ -14,13 +14,13 @@ class CountryTest extends TestCase
         parent::setUp();
     }
 
-    public function testDefaultFlagUrl()
+    public function test_default_flag_url()
     {
         $country = new Country();
         assertEquals('/vendor/country/images/flags/us.svg', $country->flag_url);
     }
 
-    public function testFlagUrl()
+    public function test_flag_url()
     {
         $flag = 'en';
         $country = new Country();
@@ -28,7 +28,7 @@ class CountryTest extends TestCase
         assertEquals('/vendor/country/images/flags/' . $flag . '.svg', $country->flag_url);
     }
 
-    public function testAlpha2()
+    public function test_alpha2()
     {
         $alpha2 = 'us';
         $country = new Country();
@@ -36,7 +36,7 @@ class CountryTest extends TestCase
         assertEquals(Str::upper($alpha2), $country->alpha2);
     }
 
-    public function testAlpha3()
+    public function test_alpha3()
     {
         $alpha3 = 'usa';
         $country = new Country();
@@ -44,7 +44,7 @@ class CountryTest extends TestCase
         assertEquals(Str::upper($alpha3), $country->alpha3);
     }
 
-    public function testCurrencyCode()
+    public function test_currency_code()
     {
         $currency_code = 'usd';
         $country = new Country();

@@ -12,7 +12,7 @@ class MenuTest extends TestCase
         parent::setUp();
     }
 
-    public function testMenu()
+    public function test_menu()
     {
         $childs = AdminMenu::findBy('title', 'admin::admin.settings')->getChilds();
         $menu = collect($childs)->where('title', 'country::country.countries');
