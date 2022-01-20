@@ -195,7 +195,7 @@ class CountryController extends AdminController
             'sub_region_code',
             'locale'
         ]));
-        $country->flag = '/vendor/country/images/flags/' . Str::lower($request->input('alpha2')) . '.svg';
+        $country->flag = $request->input('alpha2');
         $country->eea = $request->boolean('eea');
         $country->save();
         return back()->with('success', __('admin::admin.update_success'));

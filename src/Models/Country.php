@@ -39,8 +39,8 @@ class Country extends Model
     public function getFlagUrlAttribute()
     {
         return empty($this->flag) ?
-            asset('/vendor/country/images/flags/us.svg') :
-            $this->flag;
+            '/vendor/country/images/flags/us.svg' :
+            '/vendor/country/images/flags/' . Str::lower($this->flag) . '.svg';
     }
 
     public function setAlpha2Attribute($value)
