@@ -29,7 +29,7 @@ class CreateCountriesTable extends Migration
             $table->string('calling_code')->nullable(false);
             $table->string('region_code')->nullable(false);
             $table->string('sub_region_code')->nullable(false);
-            $table->string('locale')->unique()->nullable(false);
+            $table->string('locale')->nullable(false);
             $table->boolean('eea');
             $table->timestamps();
             $table->softDeletes();

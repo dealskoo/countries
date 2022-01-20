@@ -6,6 +6,8 @@ use Carbon\Carbon;
 use Dealskoo\Admin\Http\Controllers\Controller as AdminController;
 use Dealskoo\Country\Models\Country;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Webpatser\Countries\CountriesFacade;
 
 class CountryController extends AdminController
 {
@@ -52,7 +54,7 @@ class CountryController extends AdminController
         foreach ($countries as $country) {
             $row = [];
             $row[] = $country->id;
-            $row[] = $country->name;
+            $row[] = '<img src="' . $country->flag_url . '" alt="' . $country->name . '" title="' . $country->name . '" class="me-1"><p class="m-0 d-inline-block align-middle font-16">' . $country->name . '</p>';
             $row[] = $country->locale;
             $row[] = $country->alpha2;
             $row[] = $country->currency;
@@ -108,7 +110,42 @@ class CountryController extends AdminController
         if (!$request->user()->canDo('countries.create')) {
             abort(403);
         }
-
+        $request->validate([
+            'name' => ['required', 'unique:countries'],
+            'code' => ['required', 'unique:countries'],
+            'alpha2' => ['required', 'unique:countries'],
+            'alpha3' => ['required', 'unique:countries'],
+            'currency' => ['required'],
+            'currency_code' => ['required'],
+            'currency_sub_unit' => ['required'],
+            'currency_symbol' => ['required'],
+            'currency_decimals' => ['required'],
+            'currency_rate' => ['required'],
+            'calling_code' => ['required'],
+            'region_code' => ['required'],
+            'sub_region_code' => ['required'],
+            'locale' => ['required']
+        ]);
+        $country = new Country($request->only([
+            'name',
+            'code',
+            'alpha2',
+            'alpha3',
+            'currency',
+            'currency_code',
+            'currency_sub_unit',
+            'currency_symbol',
+            'currency_decimals',
+            'currency_rate',
+            'calling_code',
+            'region_code',
+            'sub_region_code',
+            'locale'
+        ]));
+        $country->flag = '/vendor/country/images/flags/' . Str::lower($request->input('alpha2')) . '.svg';
+        $country->eea = $request->boolean('eea');
+        $country->save();
+        return back()->with('success', __('admin::admin.added_success'));
     }
 
     public function edit(Request $request, $id)
@@ -125,6 +162,43 @@ class CountryController extends AdminController
         if (!$request->user()->canDo('countries.edit')) {
             abort(403);
         }
+        $request->validate([
+            'name' => ['required', 'unique:countries,name,' . $id . ',id'],
+            'code' => ['required', 'unique:countries,code,' . $id . ',id'],
+            'alpha2' => ['required', 'unique:countries,alpha2,' . $id . ',id'],
+            'alpha3' => ['required', 'unique:countries,alpha3,' . $id . ',id'],
+            'currency' => ['required'],
+            'currency_code' => ['required'],
+            'currency_sub_unit' => ['required'],
+            'currency_symbol' => ['required'],
+            'currency_decimals' => ['required'],
+            'currency_rate' => ['required'],
+            'calling_code' => ['required'],
+            'region_code' => ['required'],
+            'sub_region_code' => ['required'],
+            'locale' => ['required']
+        ]);
+        $country = Country::query()->findOrFail($id);
+        $country->fill($request->only([
+            'name',
+            'code',
+            'alpha2',
+            'alpha3',
+            'currency',
+            'currency_code',
+            'currency_sub_unit',
+            'currency_symbol',
+            'currency_decimals',
+            'currency_rate',
+            'calling_code',
+            'region_code',
+            'sub_region_code',
+            'locale'
+        ]));
+        $country->flag = '/vendor/country/images/flags/' . Str::lower($request->input('alpha2')) . '.svg';
+        $country->eea = $request->boolean('eea');
+        $country->save();
+        return back()->with('success', __('admin::admin.update_success'));
     }
 
     public function destroy(Request $request, $id)
@@ -132,6 +206,6 @@ class CountryController extends AdminController
         if (!$request->user()->canDo('countries.destroy')) {
             abort(403);
         }
-
+        return ['status' => Country::destroy($id)];
     }
 }
