@@ -106,7 +106,8 @@ class CountryControllerTest extends TestCase
     {
         $admin = Admin::factory()->isOwner()->create();
         $country = Country::factory()->create();
-        $response = $this->actingAs($admin, 'admin')->get(route('admin.countries.destroy', $country));
+        $response = $this->actingAs($admin, 'admin')->delete(route('admin.countries.destroy', $country));
         $response->assertStatus(200);
+        $this->assertSoftDeleted($country);
     }
 }
