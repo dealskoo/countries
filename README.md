@@ -11,7 +11,7 @@ $ composer require dealskoo\country
 ### Publish vendor
 
 ```base 
-$ php artisan vendor:publish --tag=public
+$ php artisan vendor:publish --provider="Dealskoo\Country\Providers\CountryServiceProvider" --tag=public
 ```
 
 ## Support
