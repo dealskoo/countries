@@ -100,6 +100,8 @@ class CountryControllerTest extends TestCase
             'locale'
         ]));
         $response->assertStatus(302);
+        $cou->refresh();
+        $this->assertEquals($country->name, $cou->name);
     }
 
     public function test_destroy()
