@@ -37,5 +37,5 @@ return [
     'updated_at' => 'Updated At',
     'action' => 'Action',
     'edit_country' => 'Edit Country',
-    'view_country' => 'View Country'
+    'country_information' => 'Country information'
 ];

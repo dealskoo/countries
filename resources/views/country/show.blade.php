@@ -1,6 +1,6 @@
 @extends('admin::layouts.panel')
 
-@section('title',__('country::country.view_country'))
+@section('title',__('country::country.country_information'))
 @section('body')
     <div class="row">
         <div class="col-12">
@@ -11,10 +11,10 @@
                                 href="{{ route('admin.dashboard') }}">{{ __('admin::admin.dashboard') }}</a></li>
                         <li class="breadcrumb-item"><a href="javascript: void(0);">{{ __('admin::admin.settings') }}</a>
                         </li>
-                        <li class="breadcrumb-item active">{{ __('country::country.view_country') }}</li>
+                        <li class="breadcrumb-item active">{{ __('country::country.country_information') }}</li>
                     </ol>
                 </div>
-                <h4 class="page-title">{{ __('country::country.view_country') }}</h4>
+                <h4 class="page-title">{{ __('country::country.country_information') }}</h4>
             </div>
         </div>
     </div>

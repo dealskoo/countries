@@ -34,5 +34,5 @@ return [
     'updated_at' => '更新时间',
     'action' => '操作',
     'edit_country' => '编辑国家',
-    'view_country' => '国家信息'
+    'country_information' => '国家信息'
 ];
