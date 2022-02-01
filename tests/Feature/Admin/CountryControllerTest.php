@@ -29,6 +29,7 @@ class CountryControllerTest extends TestCase
     {
         $admin = Admin::factory()->isOwner()->create();
         $response = $this->actingAs($admin, 'admin')->get(route('admin.countries.index'), ['HTTP_X-Requested-With' => 'XMLHttpRequest']);
+        $response->assertJsonPath('recordsTotal', 0);
         $response->assertStatus(200);
     }
 
