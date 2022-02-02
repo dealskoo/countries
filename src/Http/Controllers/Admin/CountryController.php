@@ -19,7 +19,7 @@ class CountryController extends AdminController
         if ($request->ajax()) {
             return $this->table($request);
         } else {
-            return view('country::country.index');
+            return view('country::admin.country.index');
         }
     }
 
@@ -94,7 +94,7 @@ class CountryController extends AdminController
             abort(403);
         }
         $country = Country::query()->findOrFail($id);
-        return view('country::country.show', ['country' => $country]);
+        return view('country::admin.country.show', ['country' => $country]);
     }
 
     public function create(Request $request)
@@ -102,7 +102,7 @@ class CountryController extends AdminController
         if (!$request->user()->canDo('countries.create')) {
             abort(403);
         }
-        return view('country::country.create');
+        return view('country::admin.country.create');
     }
 
     public function store(Request $request)
@@ -154,7 +154,7 @@ class CountryController extends AdminController
             abort(403);
         }
         $country = Country::query()->findOrFail($id);
-        return view('country::country.edit', ['country' => $country]);
+        return view('country::admin.country.edit', ['country' => $country]);
     }
 
     public function update(Request $request, $id)
