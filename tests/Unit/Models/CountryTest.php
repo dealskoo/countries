@@ -4,15 +4,13 @@ namespace Dealskoo\Country\Tests\Unit\Models;
 
 use Dealskoo\Country\Models\Country;
 use Dealskoo\Country\Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use function PHPUnit\Framework\assertEquals;
 
 class CountryTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
+    use RefreshDatabase;
 
     public function test_default_flag_url()
     {
