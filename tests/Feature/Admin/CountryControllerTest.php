@@ -12,12 +12,6 @@ class CountryControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-        Event::fake();
-    }
-
     public function test_index()
     {
         $admin = Admin::factory()->isOwner()->create();
