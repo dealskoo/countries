@@ -12,10 +12,10 @@ class PermissionTest extends TestCase
 
     public function test_permissions()
     {
-        self::assertNotNull(PermissionManager::getPermission('countries.index'));
-        self::assertNotNull(PermissionManager::getPermission('countries.show'));
-        self::assertNotNull(PermissionManager::getPermission('countries.create'));
-        self::assertNotNull(PermissionManager::getPermission('countries.edit'));
-        self::assertNotNull(PermissionManager::getPermission('countries.destroy'));
+        $this->assertNotNull(PermissionManager::getPermission('countries.index'));
+        $this->assertNotNull(PermissionManager::getPermission('countries.show'));
+        $this->assertNotNull(PermissionManager::getPermission('countries.create'));
+        $this->assertNotNull(PermissionManager::getPermission('countries.edit'));
+        $this->assertNotNull(PermissionManager::getPermission('countries.destroy'));
     }
 }

@@ -14,6 +14,6 @@ class MenuTest extends TestCase
     {
         $childs = AdminMenu::findBy('title', 'admin::admin.settings')->getChilds();
         $menu = collect($childs)->where('title', 'country::country.countries');
-        self::assertNotEmpty($menu);
+        $this->assertNotEmpty($menu);
     }
 }
