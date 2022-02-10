@@ -13,9 +13,7 @@ class CountryController extends AdminController
 {
     public function index(Request $request)
     {
-        if (!$request->user()->canDo('countries.index')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('countries.index'), 403);
         if ($request->ajax()) {
             return $this->table($request);
         } else {
@@ -90,26 +88,20 @@ class CountryController extends AdminController
 
     public function show(Request $request, $id)
     {
-        if (!$request->user()->canDo('countries.show')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('countries.show'), 403);
         $country = Country::query()->findOrFail($id);
         return view('country::admin.country.show', ['country' => $country]);
     }
 
     public function create(Request $request)
     {
-        if (!$request->user()->canDo('countries.create')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('countries.create'), 403);
         return view('country::admin.country.create');
     }
 
     public function store(Request $request)
     {
-        if (!$request->user()->canDo('countries.create')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('countries.create'), 403);
         $request->validate([
             'name' => ['required', 'unique:countries'],
             'code' => ['required', 'unique:countries'],
@@ -150,18 +142,14 @@ class CountryController extends AdminController
 
     public function edit(Request $request, $id)
     {
-        if (!$request->user()->canDo('countries.edit')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('countries.edit'), 403);
         $country = Country::query()->findOrFail($id);
         return view('country::admin.country.edit', ['country' => $country]);
     }
 
     public function update(Request $request, $id)
     {
-        if (!$request->user()->canDo('countries.edit')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('countries.edit'), 403);
         $request->validate([
             'name' => ['required', 'unique:countries,name,' . $id . ',id'],
             'code' => ['required', 'unique:countries,code,' . $id . ',id'],
@@ -203,9 +191,7 @@ class CountryController extends AdminController
 
     public function destroy(Request $request, $id)
     {
-        if (!$request->user()->canDo('countries.destroy')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('countries.destroy'), 403);
         return ['status' => Country::destroy($id)];
     }
 }
