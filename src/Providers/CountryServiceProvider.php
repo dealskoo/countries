@@ -26,20 +26,23 @@ class CountryServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if($this->app->runningInConsole()){
+            $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
+
+            $this->publishes([
+                __DIR__ . '/../../public' => public_path('vendor/country')
+            ], 'public');
+
+            $this->publishes([
+                __DIR__ . '/../../resources/lang' => resource_path('lang/vendor/country')
+            ], 'lang');
+        }
+
         $this->loadRoutesFrom(__DIR__ . '/../../routes/admin.php');
 
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'country');
 
-        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
-
         $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'country');
-
-        $this->publishes([
-            __DIR__ . '/../../public' => public_path('vendor/country')
-        ], 'public');
-        $this->publishes([
-            __DIR__ . '/../../resources/lang' => resource_path('lang/vendor/country')
-        ], 'lang');
 
         AdminMenu::whereTitle('admin::admin.settings', function ($menu) {
             $menu->route('admin.countries.index', 'country::country.countries', [], ['permission' => 'countries.index']);
