@@ -5,7 +5,10 @@ namespace Dealskoo\Country\Providers;
 use Dealskoo\Admin\Facades\AdminMenu;
 use Dealskoo\Admin\Facades\PermissionManager;
 use Dealskoo\Admin\Permission;
+use Dealskoo\Country\Models\Country;
+use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class CountryServiceProvider extends ServiceProvider
 {
@@ -16,7 +19,7 @@ class CountryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->mergeConfigFrom(__DIR__ . '/../../config/country.php', 'country');
     }
 
     /**
@@ -26,8 +29,22 @@ class CountryServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if($this->app->runningInConsole()){
+        Request::macro('country', function () {
+            $default_alpha2 = Str::upper(config('country.default_alpha2'));
+            $alpha2 = Str::upper(\request(config('country.prefix'), $default_alpha2));
+            $country = Country::query()->where('alpha2', $alpha2)->first();
+            if (!$country) {
+                $country = Country::query()->where('alpha2', $default_alpha2)->first();
+            }
+            return $country;
+        });
+
+        if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
+
+            $this->publishes([
+                __DIR__ . '/../../config/country.php' => config_path('country.php')
+            ], 'config');
 
             $this->publishes([
                 __DIR__ . '/../../public' => public_path('vendor/country')
