@@ -12,4 +12,9 @@ abstract class TestCase extends \Dealskoo\Admin\Tests\TestCase
             CountryServiceProvider::class
         ];
     }
+
+    protected function getPackageAliases($app)
+    {
+        return [];
+    }
 }
