@@ -2,7 +2,7 @@
 
 namespace Dealskoo\Country\Traits;
 
-trait Country
+trait HasCountry
 {
     public function country()
     {
