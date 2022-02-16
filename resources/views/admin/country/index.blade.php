@@ -87,25 +87,10 @@
                     delete_listener();
                 }
             });
+
             table.on('childRow.dt', function (e, row) {
                 delete_listener();
             });
-
-            function delete_listener() {
-                $('.delete-btn').on('click', function (e) {
-                    let table = $('#' + $(this).data('table'));
-                    let url = $(this).data('url');
-                    $.ajax({
-                        url: url,
-                        type: 'DELETE',
-                        processData: false,
-                        contentType: false,
-                        success: function (data) {
-                            table.DataTable().ajax.reload();
-                        }
-                    });
-                });
-            }
         });
     </script>
 @endsection
