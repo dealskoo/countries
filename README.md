@@ -14,6 +14,15 @@ $ composer require dealskoo\country
 $ php artisan vendor:publish --provider="Dealskoo\Country\Providers\CountryServiceProvider" --tag=public
 ```
 
+## Add Middleware
+
+`App\Http\Kernel.php`
+
+```php
+    protected $routeMiddleware = [
+        'locale' => \Dealskoo\Country\Http\Middleware\Localization::class,
+    ];
+```
 ## Support
 
 - [Dealskoo](https://www.dealskoo.com)
