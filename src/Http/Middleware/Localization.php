@@ -21,7 +21,7 @@ class Localization
      */
     public function handle(Request $request, Closure $next)
     {
-        $country = Country::query()->where('alpha2', \request(config('country.prefix')))->first();
+        $country = Country::query()->where('alpha2', request(config('country.prefix')))->first();
         if (!$country) {
             abort(404);
         }
