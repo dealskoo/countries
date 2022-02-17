@@ -30,7 +30,7 @@ $ php artisan vendor:publish --provider="Dealskoo\Country\Providers\CountryServi
 
 ```php
 public function register(){
-    URL::defaults([config('country.prefix') => request()->country()->alpha2]);
+    URL::defaults([config('country.prefix') => request()->segment(1, config('country.default_alpha2'))]);
 }
 ```
 
