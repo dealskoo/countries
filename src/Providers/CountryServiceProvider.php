@@ -31,7 +31,7 @@ class CountryServiceProvider extends ServiceProvider
     {
         Request::macro('country', function () {
             $default_alpha2 = Str::upper(config('country.default_alpha2'));
-            $alpha2 = Str::upper(\request(config('country.prefix'), $default_alpha2));
+            $alpha2 = Str::upper(\request()->segment(1, $default_alpha2));
             $country = Country::query()->where('alpha2', $alpha2)->first();
             if (!$country) {
                 $country = Country::query()->where('alpha2', $default_alpha2)->first();

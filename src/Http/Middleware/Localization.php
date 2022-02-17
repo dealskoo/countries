@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Dealskoo\Country\Models\Country;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\URL;
 
 class Localization
 {
@@ -25,6 +26,7 @@ class Localization
             abort(404);
         }
         App::setLocale($request->country()->locale);
+        URL::defaults([config('country.prefix') => $request->country()->alpha2]);
         return $next($request);
     }
 }
