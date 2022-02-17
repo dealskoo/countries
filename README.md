@@ -23,6 +23,17 @@ $ php artisan vendor:publish --provider="Dealskoo\Country\Providers\CountryServi
         'locale' => \Dealskoo\Country\Http\Middleware\Localization::class,
     ];
 ```
+
+## Add Exception
+
+`App\Exceptions\Handler.php`
+
+```php
+public function register(){
+    URL::defaults([config('country.prefix') => request()->country()->alpha2]);
+}
+```
+
 ## Support
 
 - [Dealskoo](https://www.dealskoo.com)
