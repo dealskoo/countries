@@ -2,10 +2,12 @@
 
 namespace Dealskoo\Country\Traits;
 
+use Dealskoo\Country\Models\Country;
+
 trait HasCountry
 {
     public function country()
     {
-        return $this->belongsTo(\Dealskoo\Country\Models\Country::class);
+        return $this->belongsTo(Country::class);
     }
 }
