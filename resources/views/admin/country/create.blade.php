@@ -143,7 +143,7 @@
                             <div class="col-md-6 mb-3">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="eea" name="eea"
-                                           tabindex="15"
+                                           tabindex="15" @if(old('eea')) checked @endif
                                            value="1">
                                     <label for="eea"
                                            class="form-check-label">{{ __('country::country.eea') }}</label>
