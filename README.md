@@ -30,8 +30,10 @@ $ php artisan vendor:publish --provider="Dealskoo\Country\Providers\CountryServi
 
 ```php
 public function register(){
-    URL::defaults([config('country.prefix') => request()->country()->alpha2]);
-    App::setLocale(request()->country()->locale);
+    if (!App::runningInConsole()) {
+        URL::defaults([config('country.prefix') => request()->country()->alpha2]);
+        App::setLocale(request()->country()->locale);
+    }
 }
 ```
 
