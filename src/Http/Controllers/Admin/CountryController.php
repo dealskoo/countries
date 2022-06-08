@@ -2,12 +2,9 @@
 
 namespace Dealskoo\Country\Http\Controllers\Admin;
 
-use Carbon\Carbon;
 use Dealskoo\Admin\Http\Controllers\Controller as AdminController;
 use Dealskoo\Country\Models\Country;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Webpatser\Countries\CountriesFacade;
 
 class CountryController extends AdminController
 {
